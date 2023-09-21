@@ -21,4 +21,11 @@ export class ProductService {
       cost,
     });
   }
+
+  // function to get all products
+
+  async getAllProducts(page: number, limit: number): Promise<Product[]> {
+    const skip = (page - 1) * limit;
+    return await this.productModel.find().skip(skip).limit(limit).exec();
+  }
 }
